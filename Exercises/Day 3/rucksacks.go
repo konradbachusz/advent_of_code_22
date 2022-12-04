@@ -29,7 +29,6 @@ func main() {
 
 	//Items string
 	var items = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	fmt.Println(len(items))
 
 	//Loading file
 	content, err := ioutil.ReadFile("input.txt")
@@ -46,35 +45,6 @@ func main() {
 
 	//Initialize initial sum of items
 	sum_of_items := 0
-
-	fmt.Println(sum_of_items)
-
-	fmt.Println(rucksack_list[0])
-
-	string_len := len(rucksack_list[0])
-	half_len := string_len / 2
-	fmt.Println(string_len)
-
-	first_compartment := rucksack_list[0][:half_len]
-	fmt.Println(first_compartment)
-
-	second_compartment := rucksack_list[0][half_len:string_len]
-	fmt.Println(second_compartment)
-
-	//Intersection
-	first_compartment_list := strings.Split(first_compartment, "")
-
-	fmt.Println(first_compartment_list)
-
-	second_compartment_list := strings.Split(second_compartment, "")
-
-	fmt.Println(second_compartment_list)
-
-	result := intersection(first_compartment_list, second_compartment_list) // or intersection(second, first)
-	fmt.Println(result)
-
-	var value = strings.Index(items, result[0]) + 1
-	fmt.Println("The value of the item is: ", value)
 
 	for i, inventory := range rucksack_list {
 		_ = i
@@ -101,19 +71,6 @@ func main() {
 
 	sum_of_items = 0
 
-	first_rucksack_list := strings.Split("vJrwpWtwJgWrhcsFMMfFFhFp", "")
-	second_rucksack_list := strings.Split("jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL", "")
-
-	fmt.Println(first_rucksack_list)
-	fmt.Println(second_rucksack_list)
-	third_compartment_list := strings.Split("PmmdzqPrVvPwwTWBwg", "")
-
-	result = intersection(first_rucksack_list, second_rucksack_list)
-	result = intersection(result, third_compartment_list)
-
-	fmt.Println(third_compartment_list)
-	fmt.Println(result)
-
 	size := 3
 	var j int
 	for i := 0; i < len(rucksack_list); i += size {
@@ -121,12 +78,12 @@ func main() {
 		if j > len(rucksack_list) {
 			j = len(rucksack_list)
 		}
-		//fmt.Println(rucksack_list[i:j])
+
 		first_rucksack_list := strings.Split(rucksack_list[i:j][0], "")
 		second_rucksack_list := strings.Split(rucksack_list[i:j][1], "")
 		third_compartment_list := strings.Split(rucksack_list[i:j][2], "")
 
-		result = intersection(first_rucksack_list, second_rucksack_list)
+		result := intersection(first_rucksack_list, second_rucksack_list)
 		result = intersection(result, third_compartment_list)
 		result_value := strings.Index(items, result[0]) + 1
 

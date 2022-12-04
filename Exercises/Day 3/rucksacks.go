@@ -25,6 +25,8 @@ func intersection(s1, s2 []string) (inter []string) {
 
 func main() {
 
+	///////////Part 1///////////////
+
 	//Items string
 	var items = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	fmt.Println(len(items))
@@ -93,6 +95,32 @@ func main() {
 		sum_of_items = result_value + sum_of_items
 
 	}
-	fmt.Println(sum_of_items)
+	fmt.Println("Part 1 solution:", sum_of_items)
+
+	///////////Part 2///////////////
+
+	first_rucksack_list := strings.Split("vJrwpWtwJgWrhcsFMMfFFhFp", "")
+	second_rucksack_list := strings.Split("jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL", "")
+
+	fmt.Println(first_rucksack_list)
+	fmt.Println(second_rucksack_list)
+	third_compartment_list := strings.Split("PmmdzqPrVvPwwTWBwg", "")
+
+	result = intersection(first_rucksack_list, second_rucksack_list)
+	result = intersection(result, third_compartment_list)
+
+	fmt.Println(third_compartment_list)
+	fmt.Println(result)
+
+	// size := 3
+	// var j int
+	// for i := 0; i < len(rucksack_list); i += size {
+	// 	j += size
+	// 	if j > len(s) {
+	// 		j = len(s)
+	// 	}
+	// 	// do what do you want to with the sub-slice, here just printing the sub-slices
+	// 	fmt.Println(s[i:j])
+	// }
 
 }

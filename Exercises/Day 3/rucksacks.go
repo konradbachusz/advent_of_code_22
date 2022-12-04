@@ -99,6 +99,8 @@ func main() {
 
 	///////////Part 2///////////////
 
+	sum_of_items = 0
+
 	first_rucksack_list := strings.Split("vJrwpWtwJgWrhcsFMMfFFhFp", "")
 	second_rucksack_list := strings.Split("jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL", "")
 
@@ -112,15 +114,24 @@ func main() {
 	fmt.Println(third_compartment_list)
 	fmt.Println(result)
 
-	// size := 3
-	// var j int
-	// for i := 0; i < len(rucksack_list); i += size {
-	// 	j += size
-	// 	if j > len(s) {
-	// 		j = len(s)
-	// 	}
-	// 	// do what do you want to with the sub-slice, here just printing the sub-slices
-	// 	fmt.Println(s[i:j])
-	// }
+	size := 3
+	var j int
+	for i := 0; i < len(rucksack_list); i += size {
+		j += size
+		if j > len(rucksack_list) {
+			j = len(rucksack_list)
+		}
+		//fmt.Println(rucksack_list[i:j])
+		first_rucksack_list := strings.Split(rucksack_list[i:j][0], "")
+		second_rucksack_list := strings.Split(rucksack_list[i:j][1], "")
+		third_compartment_list := strings.Split(rucksack_list[i:j][2], "")
+
+		result = intersection(first_rucksack_list, second_rucksack_list)
+		result = intersection(result, third_compartment_list)
+		result_value := strings.Index(items, result[0]) + 1
+
+		sum_of_items = result_value + sum_of_items
+	}
+	fmt.Println("Part 2 solution:", sum_of_items)
 
 }

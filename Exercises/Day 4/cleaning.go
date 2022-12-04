@@ -1,0 +1,83 @@
+//https://adventofcode.com/2022/day/2
+
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"strconv"
+	"strings"
+)
+
+// func intersection(s1, s2 []string) (inter []string) {
+// 	hash := make(map[string]bool)
+// 	for _, e := range s1 {
+// 		hash[e] = true
+// 	}
+// 	for _, e := range s2 {
+// 		// If elements present in the hashmap then append intersection list.
+// 		if hash[e] {
+// 			inter = append(inter, e)
+// 		}
+// 	}
+// 	return
+// }
+
+func makeRange(min, max int) []int {
+	a := make([]int, max-min+1)
+	for i := range a {
+		a[i] = min + i
+	}
+	return a
+}
+
+func str_to_int(str_number string) int {
+	number, err := strconv.Atoi(str_number)
+
+	_ = err
+
+	return number
+}
+
+func contains(s []int, e int) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
+}
+
+func main() {
+
+	///////////Part 1///////////////
+
+	//Loading file
+	content, err := ioutil.ReadFile("input.txt")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//Reading string
+	s := string(content)
+	//List of pairs
+	pairs_list := strings.Split(strings.Replace(s, "\r\n", "\n", -1), "\n")
+	fmt.Println(pairs_list[0])
+
+	//Split pair into separate into separate individuals
+	split_pair := strings.Split(pairs_list[0], ",")
+
+	elf1 := strings.Split(split_pair[0], "-")
+
+	elf2 := strings.Split(split_pair[1], "-")
+	fmt.Println(elf1, elf2)
+	slice1 := makeRange(str_to_int(elf1[0]), str_to_int(elf1[1]))
+	slice2 := makeRange(str_to_int(elf2[0]), str_to_int(elf2[1]))
+
+	fmt.Println(contains(slice1, 8))
+
+	// fmt.Println(slice1)
+	// fmt.Println(slice2)
+}

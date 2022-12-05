@@ -80,4 +80,5 @@ func main() {
 
 	// fmt.Println(slice1)
 	// fmt.Println(slice2)
+	//Check if each end of the slice is contained in the other slice
 }

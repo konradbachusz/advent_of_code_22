@@ -67,23 +67,26 @@ func main() {
 	//List of pairs
 	pairs_list := strings.Split(strings.Replace(s, "\r\n", "\n", -1), "\n")
 	//fmt.Println(pairs_list[0])
+	for i, inventory := range pairs_list {
+		_ = inventory
+		//Split pair into separate into separate individuals
+		split_pair := strings.Split(pairs_list[i], ",")
 
-	//Split pair into separate into separate individuals
-	split_pair := strings.Split(pairs_list[0], ",")
+		elf1 := strings.Split(split_pair[0], "-")
 
-	elf1 := strings.Split(split_pair[0], "-")
+		elf2 := strings.Split(split_pair[1], "-")
+		//fmt.Println("Ranges", elf1, elf2)
+		slice1 := makeRange(str_to_int(elf1[0]), str_to_int(elf1[1]))
+		slice2 := makeRange(str_to_int(elf2[0]), str_to_int(elf2[1]))
 
-	elf2 := strings.Split(split_pair[1], "-")
-	//fmt.Println("Ranges", elf1, elf2)
-	slice1 := makeRange(str_to_int(elf1[0]), str_to_int(elf1[1]))
-	slice2 := makeRange(str_to_int(elf2[0]), str_to_int(elf2[1]))
+		// fmt.Println(contains(slice2, str_to_int(elf1[0])))
 
-	// fmt.Println(contains(slice2, str_to_int(elf1[0])))
+		// fmt.Println(slice1[0])
 
-	// fmt.Println(slice1[0])
+		if (contains(slice1, str_to_int(elf2[0])) && contains(slice1, str_to_int(elf2[1]))) || (contains(slice2, str_to_int(elf1[0])) && contains(slice2, str_to_int(elf1[1]))) {
+			count = count + 1
 
-	if (contains(slice1, str_to_int(elf2[0])) && contains(slice1, str_to_int(elf2[1]))) || (contains(slice2, str_to_int(elf1[0])) && contains(slice2, str_to_int(elf1[1]))) {
-		count = count + 1
+		}
 
 	}
 

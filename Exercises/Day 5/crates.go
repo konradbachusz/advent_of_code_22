@@ -29,6 +29,15 @@ func SplitSubN(s string, n int) []string {
 	return subs
 }
 
+func IsLetter(s string) bool {
+	for _, r := range s {
+		if (r < 'a' || r > 'z') && (r < 'A' || r > 'Z') {
+			return false
+		}
+	}
+	return true
+}
+
 func main() {
 
 	content, err := ioutil.ReadFile("input.txt")
@@ -57,8 +66,14 @@ func main() {
 		for i, row := range crates {
 			_ = row
 			value := SplitSubN(crates[i], 4)[n]
+			value = strings.Replace(value, "[", "", 1)
+			value = strings.Replace(value, "]", "", 1)
+			value = strings.Replace(value, " ", "", 1)
+			if IsLetter(value) {
+				stacks[n] = stacks[n] + value
+			}
 			// fmt.Println("Value", value, i)
-			stacks[n] = stacks[n] + value
+
 		}
 	}
 	// stacks[0] = crates[0]
@@ -69,11 +84,12 @@ func main() {
 	// 	stacks[i] = split_row[0] + split_row[1] + split_row[2] + split_row[3] + split_row[4] + split_row[5] + split_row[6] + split_row[7] + split_row[8]
 	// }
 
-	fmt.Println("stacks0", stacks[0])
-	fmt.Println("stacks1", stacks[1])
-	fmt.Println("stacks2", stacks[2])
-	fmt.Println("stacks5", stacks[5])
-	fmt.Println("stacks8", stacks[8])
+	fmt.Println("stacks1", stacks[0])
+	fmt.Println("stacks2", stacks[1])
+	fmt.Println("stacks3", stacks[2])
+	fmt.Println("stacks6", stacks[5])
+	fmt.Println("stacks9", stacks[8])
+	fmt.Println(len(stacks[7]))
 
 }
 

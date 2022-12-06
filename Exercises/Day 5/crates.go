@@ -7,8 +7,22 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"strconv"
 	"strings"
+	"unicode/utf8"
 )
+
+func str_to_int(str_number string) int {
+	number, err := strconv.Atoi(str_number)
+
+	_ = err
+
+	return number
+}
+func trimFirstRune(s string) string {
+	_, i := utf8.DecodeRuneInString(s)
+	return s[i:]
+}
 
 func SplitSubN(s string, n int) []string {
 	sub := ""
@@ -89,7 +103,36 @@ func main() {
 	fmt.Println("stacks3", stacks[2])
 	fmt.Println("stacks6", stacks[5])
 	fmt.Println("stacks9", stacks[8])
-	fmt.Println(len(stacks[7]))
+
+	fmt.Println("Actions", actions[0])
+	split_Action := strings.Split(actions[0], " ")
+	fmt.Println(split_Action[1], split_Action[3], split_Action[5])
+
+	for i, action := range actions {
+		_ = i
+		split_Action := strings.Split(action, " ")
+		quantity := str_to_int(split_Action[1])
+		departure_stack := str_to_int(split_Action[3]) - 1
+		destination_stack := str_to_int(split_Action[5]) - 1
+		// fmt.Println("Departure stack before", stacks[departure_stack])
+		// fmt.Println("Destination stack before", stacks[destination_stack])
+
+		// fmt.Println("Actions", quantity, departure_stack, destination_stack)
+
+		for i := 1; i <= quantity; i++ {
+			// fmt.Println(i)
+			// fmt.Println(stacks[departure_stack])
+			// fmt.Println(stacks[destination_stack])
+
+			stacks[destination_stack] = stacks[destination_stack][:0] + stacks[departure_stack][0:1] + stacks[destination_stack][0:]
+			stacks[departure_stack] = trimFirstRune(stacks[departure_stack])
+		}
+
+		// fmt.Println("Departure stack after", stacks[departure_stack])
+		// fmt.Println("Destination stack after", stacks[destination_stack])
+
+	}
+	fmt.Println(stacks)
 
 }
 

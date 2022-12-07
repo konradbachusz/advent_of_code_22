@@ -38,7 +38,7 @@ func main() {
 
 	//Reading string
 	s := string(content)
-	fmt.Println(char_count)
+
 	// _ = s
 	//test_str := "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"
 	window_string := ""
@@ -61,7 +61,32 @@ func main() {
 
 	}
 	char_count = char_count + 1
-	fmt.Println("Processed characters", char_count)
+	fmt.Println("Part 1 Solution:", char_count)
+
+	/////////////Part 2///////////////
+	// test_str := "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"
+	window_string = ""
+	char_count = 0
+	for i, character := range s {
+		_ = i
+		window_string = window_string + string(character)
+
+		if len(window_string) > 14 {
+			window_string = window_string[1:]
+		}
+
+		if len(window_string) == 14 && unique(window_string) {
+			break
+		}
+
+		char_count = char_count + 1
+
+		// fmt.Println("Character", string(character))
+		// fmt.Println("window_string:", string(window_string))
+
+	}
+	char_count = char_count + 1
+	fmt.Println("Part 2 Solution:", char_count)
 
 }
 

@@ -39,10 +39,10 @@ func main() {
 	//Reading string
 	s := string(content)
 	fmt.Println(char_count)
-	_ = s
-	test_str := "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"
+	// _ = s
+	//test_str := "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"
 	window_string := ""
-	for i, character := range test_str {
+	for i, character := range s {
 		_ = i
 		window_string = window_string + string(character)
 
@@ -56,8 +56,8 @@ func main() {
 
 		char_count = char_count + 1
 
-		fmt.Println("Character", string(character))
-		fmt.Println("window_string:", string(window_string))
+		// fmt.Println("Character", string(character))
+		// fmt.Println("window_string:", string(window_string))
 
 	}
 	char_count = char_count + 1
